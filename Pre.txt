@@ -1,0 +1,15 @@
+
+as name: string = "Adrian Plavka";
+
+struct Point {
+    x: int,
+    y: int, 
+}
+
+as add: ()int = fn(x, y) {
+    ret x + y;
+}
+
+impl Addable {
+    add: (int, int) int
+}
