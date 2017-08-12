@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/adrianplavka/fe/repl"
+	"./repl"
 )
 
 func main() {

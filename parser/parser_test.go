@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/adrianplavka/fe/ast"
-	"github.com/adrianplavka/fe/lexer"
+	"../ast"
+	"../lexer"
 )
 
 func TestAsStatements(t *testing.T) {
@@ -235,7 +235,11 @@ func TestParsingPrefixExpressions(t *testing.T) {
 	}
 }
 
-func testIntegerLiteral(t *testing.T, il ast.Expression, value int64) bool {
+func testIntegerLiteral(
+	t *testing.T,
+	il ast.Expression,
+	value int64) bool {
+
 	integer, ok := il.(*ast.IntegerLiteral)
 	if !ok {
 		t.Errorf("Expression not an IntegerLiteral. Got: %T",
@@ -258,7 +262,11 @@ func testIntegerLiteral(t *testing.T, il ast.Expression, value int64) bool {
 	return true
 }
 
-func testIdentifier(t *testing.T, exp ast.Expression, value string) bool {
+func testIdentifier(
+	t *testing.T,
+	exp ast.Expression,
+	value string) bool {
+
 	identifier, ok := exp.(*ast.Identifier)
 	if !ok {
 		t.Errorf("Expression not an Identifier. Got: %T",
@@ -281,7 +289,11 @@ func testIdentifier(t *testing.T, exp ast.Expression, value string) bool {
 	return true
 }
 
-func testLiteralExpression(t *testing.T, exp ast.Expression, expected interface{}) bool {
+func testLiteralExpression(
+	t *testing.T,
+	exp ast.Expression,
+	expected interface{}) bool {
+
 	switch v := expected.(type) {
 	case int:
 		return testIntegerLiteral(t, exp, int64(v))
@@ -296,7 +308,11 @@ func testLiteralExpression(t *testing.T, exp ast.Expression, expected interface{
 	return false
 }
 
-func testBooleanLiteral(t *testing.T, exp ast.Expression, value bool) bool {
+func testBooleanLiteral(
+	t *testing.T,
+	exp ast.Expression,
+	value bool) bool {
+
 	bo, ok := exp.(*ast.Boolean)
 	if !ok {
 		t.Errorf("Expression not a Boolean. Got: %T",
@@ -319,8 +335,12 @@ func testBooleanLiteral(t *testing.T, exp ast.Expression, value bool) bool {
 	return true
 }
 
-func testInfixExpression(t *testing.T, exp ast.Expression, left interface{},
-	operator string, right interface{}) bool {
+func testInfixExpression(
+	t *testing.T,
+	exp ast.Expression,
+	left interface{},
+	operator string,
+	right interface{}) bool {
 
 	opExp, ok := exp.(*ast.InfixExpression)
 	if !ok {
@@ -328,7 +348,7 @@ func testInfixExpression(t *testing.T, exp ast.Expression, left interface{},
 		return false
 	}
 
-	if !testLiteralExpression(t, opExp, left) {
+	if !testLiteralExpression(t, opExp.Left, left) {
 		return false
 	}
 
@@ -338,7 +358,7 @@ func testInfixExpression(t *testing.T, exp ast.Expression, left interface{},
 		return false
 	}
 
-	if !testLiteralExpression(t, opExp, right) {
+	if !testLiteralExpression(t, opExp.Right, right) {
 		return false
 	}
 

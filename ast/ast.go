@@ -1,6 +1,6 @@
 package ast
 
-import "github.com/adrianplavka/fe/token"
+import "../token"
 import "bytes"
 
 type Node interface {

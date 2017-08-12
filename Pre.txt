@@ -6,10 +6,10 @@ struct Point {
     y: int, 
 }
 
-as add: ()int = fn(x, y) {
-    ret x + y;
+interface Addable {
+    add: (int, int) int
 }
 
-impl Addable {
-    add: (int, int) int
+fn add(x: int, y: int) of Point {
+    ret x + y;
 }

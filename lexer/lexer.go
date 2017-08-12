@@ -1,7 +1,7 @@
 package lexer
 
 import (
-	"github.com/adrianplavka/fe/token"
+	"../token"
 )
 
 // Lexer parses through input to look for tokens.

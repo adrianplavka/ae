@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/adrianplavka/fe/ast"
-	"github.com/adrianplavka/fe/lexer"
-	"github.com/adrianplavka/fe/token"
+	"../ast"
+	"../lexer"
+	"../token"
 )
 
 type (
@@ -306,6 +306,7 @@ func (p *Parser) parseInfixExpression(left ast.Expression) ast.Expression {
 
 	precedence := p.curPrecedence()
 	p.nextToken()
+
 	expression.Right = p.parseExpression(precedence)
 
 	return expression

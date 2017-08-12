@@ -3,7 +3,7 @@ package lexer
 import (
 	"testing"
 
-	"github.com/adrianplavka/fe/token"
+	"../token"
 )
 
 // Test the input and the next tokens.
