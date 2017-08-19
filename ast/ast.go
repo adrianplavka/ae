@@ -47,7 +47,7 @@ func (prg *Program) String() string {
 
 // DeclareStatement struct.
 // It consists of a "DECLARE" token, with an identifier and an expression.
-// as <identifier> = <expression>;
+// as <identifier> = <expression>
 type DeclareStatement struct {
 	Token token.Token // The "DECLARE" token.
 	Name  *Identifier
@@ -87,7 +87,7 @@ func (i *Identifier) String() string {
 
 // ReturnStatement struct.
 // It consists of a "RETURN" token, with an expression.
-// return <expression>;
+// return <expression>
 type ReturnStatement struct {
 	Token token.Token // The "RETURN" token.
 	Value Expression
@@ -124,6 +124,7 @@ func (es *ExpressionStatement) String() string {
 }
 
 // IntegerLiteral is an expression with a value of type int64.
+// <integer>
 type IntegerLiteral struct {
 	Token token.Token
 	Value int64
@@ -152,6 +153,8 @@ func (pe *PrefixExpression) String() string {
 	return out.String()
 }
 
+// InfixExpression is an expression with an infix operator.
+// <expression> <operator> <expression>
 type InfixExpression struct {
 	Token    token.Token // The infix token, "5 + 5", "true != false", ...
 	Left     Expression
@@ -173,6 +176,8 @@ func (ie *InfixExpression) String() string {
 	return out.String()
 }
 
+// Boolean is a type that holds a value of 'true' or 'false'.
+// <boolean>
 type Boolean struct {
 	Token token.Token
 	Value bool
@@ -182,6 +187,8 @@ func (b *Boolean) expressionNode()      {}
 func (b *Boolean) TokenLiteral() string { return b.Token.Literal }
 func (b *Boolean) String() string       { return b.Token.Literal }
 
+// IfExpression is an expression that contains the whole if blocks.
+// if (<condition>) { <consequence> } else { <alternative> }
 type IfExpression struct {
 	Token       token.Token // The "if" token.
 	Condition   Expression
@@ -207,6 +214,8 @@ func (ie *IfExpression) String() string {
 	return out.String()
 }
 
+// BlockStatement is a statement wrapped around the brackets.
+// { <statement> }
 type BlockStatement struct {
 	Token      token.Token // The "{" token.
 	Statements []Statement
