@@ -11,7 +11,6 @@ import (
 
 const prompt = ">> "
 
-// Start the REPL for Fe programming language.
 func Start(in io.Reader, out io.Writer) {
 	scanner := bufio.NewScanner(in)
 
